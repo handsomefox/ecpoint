@@ -36,29 +36,17 @@ func IsOnCurveCheck(a ECPoint) (c bool) {
 
 // P + Q.
 func AddECPoints(a, b ECPoint) (c ECPoint) {
-	x, y := curve.Add(a.X, a.Y, b.X, b.Y)
-	return ECPoint{
-		X: x,
-		Y: y,
-	}
+	return ECPointGen(curve.Add(a.X, a.Y, b.X, b.Y))
 }
 
 // 2P.
 func DoubleECPoints(a ECPoint) (c ECPoint) {
-	x, y := curve.Double(a.X, a.Y)
-	return ECPoint{
-		X: x,
-		Y: y,
-	}
+	return ECPointGen(curve.Double(a.X, a.Y))
 }
 
 // k * P.
 func ScalarMult(a ECPoint, k big.Int) (c ECPoint) {
-	x, y := curve.ScalarMult(a.X, a.Y, k.Bytes())
-	return ECPoint{
-		X: x,
-		Y: y,
-	}
+	return ECPointGen(curve.ScalarMult(a.X, a.Y, k.Bytes()))
 }
 
 // Convert point to string.
